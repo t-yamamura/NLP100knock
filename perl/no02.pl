@@ -3,12 +3,13 @@
 
 use strict;
 use warnings;
-use Encode;
+use utf8;
+binmode STDOUT, ':encoding(Shift_JIS)';
 
-my $str1 = decode('UTF-8', "パトカー");
-my $str2 = decode('UTF-8', "タクシー");
+my $str1 = "パトカー";
+my $str2 = "タクシー";
 my @str1 = split //, $str1;
 my @str2 = split //, $str2;
 my $join = '';
 $join .= $str1[$_] . $str2[$_] for (0..$#str1);
-print encode('Shift_JIS', $join) . "\n";
+print $join . "\n";

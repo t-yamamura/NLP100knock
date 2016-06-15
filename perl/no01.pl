@@ -3,9 +3,10 @@
 
 use strict;
 use warnings;
-use Encode;
+use utf8;
+binmode STDOUT, ':encoding(Shift_JIS)';
 
-my $str = decode('UTF-8', "パタトクカシーー");
+my $str = "パタトクカシーー";
 my @str = split('', $str);
 my @odd = grep {$_ = $str[$_] if $_ % 2 == 1} (0..$#str);
-print encode('Shift_JIS', join("", @odd)."\n");
+print join("", @odd)."\n";
