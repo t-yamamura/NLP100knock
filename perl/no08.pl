@@ -22,3 +22,10 @@ sub cipher {
 	}
 	return $cipher;
 }
+
+# **************
+#    実行結果
+# **************
+# 暗号化 : Hvool, dliow!
+# 復号化 : Hello, world!
+# [Finished in 0.1s]

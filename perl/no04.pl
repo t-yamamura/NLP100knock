@@ -25,3 +25,28 @@ for(my $i = 0; $i < $#word + 1; $i++) {
 foreach my $key (sort {$hash{$a} <=> $hash{$b}} keys %hash) {
 	print "$hash{$key} : $key\n";
 }
+
+# **************
+#    実行結果
+# **************
+# 1 : H
+# 2 : He
+# 3 : Li
+# 4 : Be
+# 5 : B
+# 6 : C
+# 7 : N
+# 8 : O
+# 9 : F
+# 10 : Ne
+# 11 : Na
+# 12 : Mi
+# 13 : Al
+# 14 : Si
+# 15 : P
+# 16 : S
+# 17 : Cl
+# 18 : Ar
+# 19 : K
+# 20 : Ca
+# [Finished in 0.1s]

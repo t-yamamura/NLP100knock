@@ -10,3 +10,9 @@ my $str = "パタトクカシーー";
 my @str = split('', $str);
 my @odd = grep {$_ = $str[$_] if $_ % 2 == 1} (0..$#str);
 print join("", @odd)."\n";
+
+# **************
+#    実行結果
+# **************
+# タクシー
+# [Finished in 0.2s]

@@ -14,3 +14,11 @@ my @str = split('', $str);
 my @reverse2 = ();
 unshift(@reverse2, $_) foreach @str;
 print "reverse2 : " . join("", @reverse2) . "\n";
+
+
+# **************
+#    実行結果
+# **************
+# reverse1 : desserts
+# reverse2 : desserts
+# [Finished in 0.1s]

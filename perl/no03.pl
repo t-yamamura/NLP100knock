@@ -11,3 +11,9 @@ my @word = split(" ", $str);
 my @list = ();
 push(@list, length $_) foreach @word;
 print shift(@list) . "." . join("", @list) . "\n";
+
+# **************
+#    実行結果
+# **************
+# 3.14159265358979
+# [Finished in 0.1s]

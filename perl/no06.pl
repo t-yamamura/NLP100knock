@@ -30,4 +30,15 @@ my @sa_set = grep { ++$cnt{$_} == 1} @x;
 print encode('shift_jis', decode('utf-8', "和集合 : ")) . join(" ", sort @wa_set) . "\n";
 print encode('shift_jis', decode('utf-8', "積集合 : ")) . join(" ", sort @seki_set) . "\n";
 print encode('shift_jis', decode('utf-8', "差集合 : ")) . join(" ", sort @sa_set) . "\n";
-grep {"se" eq $_} (@x, @y) ? print '"se" is in x or y"' : print '"se" is not in x or y"';
+grep {"se" eq $_} @x ? print "\"se\" is in x\n" : print "\"se\" is not in x\n";
+grep {"se" eq $_} @y ? print "\"se\" is in y\n" : print "\"se\" is not in y\n";
+
+# **************
+#    実行結果
+# **************
+# 和集合 : ad ag ap ar di gr is pa ph ra se
+# 積集合 : ap ar pa ra
+# 差集合 : ad ap ar di is pa ra se
+# "se" is in x
+# "se" is in y
+# [Finished in 0.1s]

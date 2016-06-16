@@ -13,3 +13,9 @@ my @str2 = split //, $str2;
 my $join = '';
 $join .= $str1[$_] . $str2[$_] for (0..$#str1);
 print $join . "\n";
+
+# **************
+#    実行結果
+# **************
+# パタトクカシーー
+# [Finished in 0.2s]

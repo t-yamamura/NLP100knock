@@ -21,3 +21,10 @@ foreach my $word (@str) {
 	}
 }
 print $typoglycemia;
+
+
+# **************
+#    実行結果
+# **************
+# I cod'ulnt bvleiee that I cuold alclauty unerdatsnd what I was rediang : the pnoanhemel power of the human mind . [Finished in 0.1s]
+# I cunl'dot biveele that I cluod alcaulty ustedanrnd what I was rnadeig : the pamnonheel pwoer of the huamn mind . [Finished in 0.1s]
