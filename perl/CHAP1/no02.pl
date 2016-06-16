@@ -6,10 +6,8 @@ use warnings;
 use utf8;
 binmode STDOUT, ':encoding(Shift_JIS)';
 
-my $str1 = "パトカー";
-my $str2 = "タクシー";
-my @str1 = split //, $str1;
-my @str2 = split //, $str2;
+my @str1 = split //, "パトカー";
+my @str2 = split //, "タクシー";
 my $join = '';
 $join .= $str1[$_] . $str2[$_] for (0..$#str1);
 print $join . "\n";

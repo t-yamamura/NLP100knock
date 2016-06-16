@@ -7,9 +7,8 @@ use warnings;
 
 my $str = "Now I need a drink, alcoholic of course, after the heavy lectures involving quantum mechanics.";
 $str =~ s/\,|\.//g;
-my @word = split(" ", $str);
 my @list = ();
-push(@list, length $_) foreach @word;
+push(@list, length $_) foreach split(" ", $str);
 print shift(@list) . "." . join("", @list) . "\n";
 
 # **************

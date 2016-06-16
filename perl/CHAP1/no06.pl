@@ -4,7 +4,7 @@
 
 use strict;
 use warnings;
-use lib ".";
+use lib "..";
 use LIB;
 use Encode;
 

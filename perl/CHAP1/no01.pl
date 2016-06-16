@@ -6,9 +6,10 @@ use warnings;
 use utf8;
 binmode STDOUT, ':encoding(Shift_JIS)';
 
+# 奇数文字目(配列の添え字は0始まりなのでプログラム的には偶数文字目)だけの配列を作る
 my $str = "パタトクカシーー";
 my @str = split('', $str);
-my @odd = grep {$_ = $str[$_] if $_ % 2 == 1} (0..$#str);
+my @odd = grep {$_ = $str[$_] if $_ % 2 == 0} (0..$#str);
 print join("", @odd)."\n";
 
 # **************

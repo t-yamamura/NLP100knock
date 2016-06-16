@@ -8,7 +8,7 @@ use strict;
 use warnings;
 use List::Util qw/shuffle/;
 
-my @str = split " ", "I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind .";
+my @str = split / /, "I couldn't believe that I could actually understand what I was reading : the phenomenal power of the human mind .";
 my $typoglycemia = '';
 foreach my $word (@str) {
 	if(length $word <= 4) {

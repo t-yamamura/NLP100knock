@@ -9,10 +9,9 @@ my $str = "stressed";
 my $reverse1 = reverse $str;
 print "reverse1 : $reverse1\n";
 
-# unshift関数
-my @str = split('', $str);
+# unshift関数 1文字ずつ先頭から配列の先頭に詰める
 my @reverse2 = ();
-unshift(@reverse2, $_) foreach @str;
+unshift(@reverse2, $_) foreach split('', $str);
 print "reverse2 : " . join("", @reverse2) . "\n";
 
 
