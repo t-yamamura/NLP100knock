@@ -6,15 +6,16 @@ use strict;
 use warnings;
 use lib "..";
 use LIB;
-use Encode;
+use utf8;
+binmode STDOUT, ':encoding(UTF-8)';
 
 my $str = "I am an NLPer";
 my @word = split(" ", $str);
 my $N = 2;
 my @ngram_word = &LIB::getWordNgram($N, \@word);
 my @ngram_char = &LIB::getCharNgram($N, \@word);
-print encode('shift_jis', decode('utf-8', "単語$Nグラム : ")) . join(" ", @ngram_word) . "\n";
-print encode('shift_jis', decode('utf-8', "文字$Nグラム : ")) . join(" ", @ngram_char) . "\n";
+print "単語$N-グラム : " . join(" ", @ngram_word) . "\n";
+print "文字$N-グラム : " . join(" ", @ngram_char) . "\n";
 
 
 # **************

@@ -6,7 +6,7 @@ use warnings;
 use lib "..";
 use LIB;
 use utf8;
-binmode STDOUT, ':encoding(Shift_JIS)';
+binmode STDOUT, ':encoding(UTF-8)';
 
 my $text = &LIB::fopen("../../data/hightemp.txt");
 $text =~ s/\t/ /g;

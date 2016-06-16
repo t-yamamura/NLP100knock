@@ -4,7 +4,7 @@
 use strict;
 use warnings;
 use utf8;
-binmode STDOUT, ':encoding(Shift_JIS)';
+binmode STDOUT, ':encoding(UTF-8)';
 
 my @str1 = split //, "パトカー";
 my @str2 = split //, "タクシー";

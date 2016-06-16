@@ -4,7 +4,7 @@
 use strict;
 use warnings;
 use utf8;
-binmode STDOUT, ':encoding(Shift_JIS)';
+binmode STDOUT, ':encoding(UTF-8)';
 
 # 奇数文字目(配列の添え字は0始まりなのでプログラム的には偶数文字目)だけの配列を作る
 my $str = "パタトクカシーー";

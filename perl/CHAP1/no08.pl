@@ -7,11 +7,12 @@
 
 use strict;
 use warnings;
-use Encode;
+use utf8;
+binmode STDOUT, ':encoding(UTF-8)';
 
 my $str = "Hello, world!";
-print encode('shift_jis', decode('utf-8', "暗号化 : ")) . &cipher($str) . "\n";
-print encode('shift_jis', decode('utf-8', "復号化 : ")) . &cipher(&cipher($str)) . "\n";
+print "暗号化 : " . &cipher($str) . "\n";
+print "復号化 : " . &cipher(&cipher($str)) . "\n";
 
 sub cipher {
 	my @str = split //, shift;

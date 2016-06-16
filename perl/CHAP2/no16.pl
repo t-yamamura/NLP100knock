@@ -7,7 +7,7 @@ use lib "..";
 use LIB;
 use utf8;
 use autodie;
-binmode STDOUT, ':encoding(Shift_JIS)';
+binmode STDOUT, ':encoding(UTF-8)';
 
 my $N;
 $N = @ARGV == 1 ? $ARGV[0] : 0;

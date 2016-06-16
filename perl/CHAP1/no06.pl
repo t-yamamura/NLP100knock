@@ -6,7 +6,8 @@ use strict;
 use warnings;
 use lib "..";
 use LIB;
-use Encode;
+use utf8;
+binmode STDOUT, ':encoding(UTF-8)';
 
 my $N = 2; # bi-gram
 my @str1 = split //, "paraparaparadise";
@@ -27,9 +28,9 @@ my @seki_set = grep { ++$cnt{$_} == 2} (@x, @y);
 map { $cnt{$_}-- } @y;
 my @sa_set = grep { ++$cnt{$_} == 1} @x;
 
-print encode('shift_jis', decode('utf-8', "和集合 : ")) . join(" ", sort @wa_set) . "\n";
-print encode('shift_jis', decode('utf-8', "積集合 : ")) . join(" ", sort @seki_set) . "\n";
-print encode('shift_jis', decode('utf-8', "差集合 : ")) . join(" ", sort @sa_set) . "\n";
+print "和集合 : " . join(" ", sort @wa_set) . "\n";
+print "積集合 : " . join(" ", sort @seki_set) . "\n";
+print "差集合 : " . join(" ", sort @sa_set) . "\n";
 grep {"se" eq $_} @x ? print "\"se\" is in x\n" : print "\"se\" is not in x\n";
 grep {"se" eq $_} @y ? print "\"se\" is in y\n" : print "\"se\" is not in y\n";
 

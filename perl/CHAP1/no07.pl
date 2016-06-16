@@ -5,7 +5,7 @@
 use strict;
 use warnings;
 use utf8;
-binmode STDOUT, ':encoding(Shift_JIS)';
+binmode STDOUT, ':encoding(UTF-8)';
 
 my ($x, $y, $z) = qw/12 気温 22.4/;
 print &connectXYZ($x, $y, $z);

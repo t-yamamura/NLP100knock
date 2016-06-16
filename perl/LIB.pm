@@ -3,6 +3,11 @@
 ;#####################
 package LIB;
 
+use strict;
+use warnings;
+use utf8;
+use JSON;
+
 # *******************************************************************
 # 単語Nグラムを返す (No.05, 06)
 #
@@ -84,5 +89,20 @@ sub fwrite {
 
 }
 
+
+sub getTextFromWiki {
+
+	my ($pass, $title) = @_;
+
+	my $text = '';
+	my @wiki = split /\n/, &fopen($pass);
+	foreach my $line (@wiki) {
+		my $article = JSON->new()->decode($line);
+		$text = $article->{text} if $article->{title} eq $title;
+	}
+
+	return $text;
+
+}
 
 1; # omazinai

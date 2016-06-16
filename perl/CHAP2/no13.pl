@@ -7,7 +7,7 @@ use warnings;
 use lib "..";
 use LIB;
 use utf8;
-binmode STDOUT, ':encoding(Shift_JIS)';
+binmode STDOUT, ':encoding(UTF-8)';
 
 my @col1 = split/\n/, &LIB::fopen("col1.txt");
 my @col2 = split/\n/, &LIB::fopen("col2.txt");

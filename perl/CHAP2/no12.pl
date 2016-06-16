@@ -7,7 +7,7 @@ use warnings;
 use lib "..";
 use LIB;
 use utf8;
-binmode STDOUT, ':encoding(Shift_JIS)';
+binmode STDOUT, ':encoding(UTF-8)';
 
 my @text = split/\n/, &LIB::fopen("../../data/hightemp.txt");
 my $COL1TEXT = '';
