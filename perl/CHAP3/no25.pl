@@ -23,9 +23,9 @@ foreach my $item (split /\n\|/, $stdinfo) {
 }
 
 # 出力
-foreach my $key (keys %hash) {
-	print $key . "\t" . $hash{$key} . "\n";
-}
+# foreach my $key (keys %hash) {
+# 	print $key . "\t" . $hash{$key} . "\n";
+# }
 
 
 # **************
