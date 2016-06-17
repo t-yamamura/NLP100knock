@@ -8,15 +8,21 @@ use LIB;
 use utf8;
 binmode STDOUT, ':encoding(utf-8)';
 
+# 入力 (titleがイギリスの記事)
 my $text = &LIB::getTextFromWiki("../../data/jawiki-country.json", "イギリス");
 
+# 基礎情報テンプレートの取得
 my %hash = ();
-my $stdinfo = $1 if $text =~ /\{\{基礎情報\s国([\s\S]*)\n\}\}/; # 基礎情報テンプレートの取得
+my $stdinfo = $1 if $text =~ /\{\{基礎情報\s国([\s\S]*)\n\}\}/;
+
+# "フィールド名 = 値"の正規表現を抽出
+# 但し，値には改行を含む場合があるので注意
 foreach my $item (split /\n\|/, $stdinfo) {
 	next if $item eq '';
-	$hash{$1} = $2 if $item =~ /(.+?)\s\=\s([\s\S]*)/; # "フィールド名 = 値"の正規表現を抽出(但し，値には改行を含む場合があるので注意)
+	$hash{$1} = $2 if $item =~ /(.+?)\s\=\s([\s\S]*)/;
 }
 
+# 出力
 foreach my $key (keys %hash) {
 	print $key . "\t" . $hash{$key} . "\n";
 }

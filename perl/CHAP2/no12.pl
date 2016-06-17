@@ -9,14 +9,19 @@ use LIB;
 use utf8;
 binmode STDOUT, ':encoding(UTF-8)';
 
+# 入力 (1行毎にリスト化)
 my @text = split/\n/, &LIB::fopen("../../data/hightemp.txt");
+
 my $COL1TEXT = '';
 my $COL2TEXT = '';
 foreach my $line (@text) {
+	# 各列(タブ)毎に分割
 	my ($col1, $col2) = split /\t/, $line;
 	$COL1TEXT .= $col1 . "\n";
 	$COL2TEXT .= $col2 . "\n";
 }
+
+# ファイル出力
 &LIB::fwrite("col1.txt", $COL1TEXT);
 &LIB::fwrite("col2.txt", $COL2TEXT);
 

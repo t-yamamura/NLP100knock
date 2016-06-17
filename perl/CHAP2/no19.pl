@@ -9,14 +9,18 @@ use LIB;
 use utf8;
 binmode STDOUT, ':encoding(UTF-8)';
 
+# 入力 (1行毎にリスト化)
 my @text = split/\n/, &LIB::fopen("../../data/hightemp.txt");
 
+# 1列目の文字列の出現頻度を計算
+# %hash{1列目の文字列} = 文字列の出現頻度
 my %cnt = ();
 foreach my $line (@text) {
 	my @col = split/\t/, $line;
 	$cnt{$col[0]} = exists $cnt{$col[0]} ? ++$cnt{$col[0]} : 1;
 }
 
+# 出力 (出現頻度の降順)
 foreach my $key (sort {$cnt{$b} <=> $cnt{$a}} keys %cnt) {
 	print $cnt{$key} . "\t" . $key . "\n";
 }

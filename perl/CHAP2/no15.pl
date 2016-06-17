@@ -8,10 +8,12 @@ use LIB;
 use utf8;
 binmode STDOUT, ':encoding(UTF-8)';
 
+# N の入力
 my $N;
-$N = @ARGV == 1 ? $ARGV[0] : 5;
+$N = @ARGV == 1 ? $ARGV[0] : 0; # コマンドラインからの入力を受け取る(引数がなければ0)
 my @text = split/\n/, &LIB::fopen("../../data/hightemp.txt");
 
+# 出力(末尾のN行を出力)
 print $text[$_] . "\n" for ($#text-$N+1..$#text);
 
 # **************

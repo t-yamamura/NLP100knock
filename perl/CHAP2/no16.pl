@@ -9,20 +9,22 @@ use utf8;
 use autodie;
 binmode STDOUT, ':encoding(UTF-8)';
 
+# N の入力
 my $N;
-$N = @ARGV == 1 ? $ARGV[0] : 0;
+$N = @ARGV == 1 ? $ARGV[0] : 0; # コマンドラインからの入力を受け取る(引数がなければ0)
 my @text = split/\n/, &LIB::fopen("../../data/hightemp.txt");
 
-# 0で割らないようにエラー処理をする
+# 分割行数の計算
 my $split_num;
 eval {
 	$split_num = ($#text + 1) % $N == 0 ? ($#text + 1) / $N : int(($#text + 1) / $N + 1);
 };
 if($@) {
-	print "ERROR: $@";
+	print "ERROR: $@"; # 0で割る場合はエラーを出して終了
 	exit 1;
 }
 
+# 分割行数の倍数のとき分割を行う
 ($_ != 0 || $split_num) && ($_ + 1) % $split_num == 0 ? print $text[$_] . "\n\n" : print $text[$_] . "\n" for (0..$#text);
 
 

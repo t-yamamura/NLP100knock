@@ -8,8 +8,12 @@ use LIB;
 use utf8;
 binmode STDOUT, ':encoding(utf-8)';
 
+# 入力 (titleがイギリスの記事を1行毎にリスト化)
 my @text = split /\n/, &LIB::getTextFromWiki("../../data/jawiki-country.json", "イギリス");
 
+# 記事中のメディアファイルを出力
+# $_ => 正規表現にマッチする行
+# $2 => メディアファイル (.+?)に該当
 $_ =~ /(File|ファイル):(.+?)\|/ ? print $2 . "\n" : next foreach @text;
 
 

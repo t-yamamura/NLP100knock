@@ -8,6 +8,7 @@ use LIB;
 use utf8;
 binmode STDOUT, ':encoding(UTF-8)';
 
+# 入力ファイル(hightemp.txt)を1行毎にリスト化
 my @text = split/\n/, &LIB::fopen("../../data/hightemp.txt");
 print "行数 : " . eval($#text + 1). "\n";
 

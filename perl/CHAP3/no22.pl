@@ -8,9 +8,13 @@ use LIB;
 use utf8;
 binmode STDOUT, ':encoding(utf-8)';
 
+# 入力 (titleがイギリスの記事を1行毎にリスト化)
 my @text = split /\n/, &LIB::getTextFromWiki("../../data/jawiki-country.json", "イギリス");
 
-# カテゴリ名と読みを分けて扱う
+# 正規表現にマッチする行のカテゴリ名を出力
+# $_ => 正規表現にマッチする行
+# $1 => 正規表現にマッチする行のカテゴリ名 (.+?)に該当
+# $2 => 正規表現にマッチする行の読み       (\|.*)に該当
 $_ =~ /\[\[Category:(.+?)(\|.*)*\]\]/ ? print $1 . "\n" : next foreach @text;
 
 # **************

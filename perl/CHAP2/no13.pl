@@ -9,12 +9,15 @@ use LIB;
 use utf8;
 binmode STDOUT, ':encoding(UTF-8)';
 
+# 入力
 my @col1 = split/\n/, &LIB::fopen("col1.txt");
 my @col2 = split/\n/, &LIB::fopen("col2.txt");
 my @merge = ();
+
+# col1.txtとcol2.txtを各行毎にタブ区切りで結合
 push(@merge, $col1[$_] . "\t" . $col2[$_]) for (0..$#col1);
 
-&LIB::fwrite("merge.txt", join("\n", @merge));
+# 出力
 print join("\n", @merge);
 
 # **************

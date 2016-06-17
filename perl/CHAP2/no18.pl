@@ -10,14 +10,17 @@ use LIB;
 use utf8;
 binmode STDOUT, ':encoding(UTF-8)';
 
+# 入力 (1行毎にリスト化)
 my @text = split/\n/, &LIB::fopen("../../data/hightemp.txt");
 
+# hash{各行} = 3コラム目の数値
 my %hash = ();
 foreach my $line (@text) {
 	my @col = split/\t/, $line;
 	$hash{$line} = $col[2];
 }
 
+# 出力 (3コラム目の数値の降順でソート)
 foreach my $key (sort {$hash{$b} <=> $hash{$a}} keys %hash) {
 	print $key . "\n";
 }

@@ -28,6 +28,7 @@ my @seki_set = grep { ++$cnt{$_} == 2} (@x, @y);
 map { $cnt{$_}-- } @y;
 my @sa_set = grep { ++$cnt{$_} == 1} @x;
 
+# 出力
 print "和集合 : " . join(" ", sort @wa_set) . "\n";
 print "積集合 : " . join(" ", sort @seki_set) . "\n";
 print "差集合 : " . join(" ", sort @sa_set) . "\n";

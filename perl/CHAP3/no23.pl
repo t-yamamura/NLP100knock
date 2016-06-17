@@ -8,8 +8,13 @@ use LIB;
 use utf8;
 binmode STDOUT, ':encoding(utf-8)';
 
+# 入力 (titleがイギリスの記事を1行毎にリスト化)
 my @text = split /\n/, &LIB::getTextFromWiki("../../data/jawiki-country.json", "イギリス");
 
+# 記事中のセクション名とそのレベルを取得
+# $_ => 正規表現にマッチする行
+# $1 => セクションのレベル (\={2,})に該当
+# $2 => セクション名       (.+?)に該当
 print "section : level\n";
 $_ =~ /(\={2,})(.+?)(\={2,})/ ? print $2 . " : " . eval(length($1) - 1) . "\n" : next foreach @text;
 

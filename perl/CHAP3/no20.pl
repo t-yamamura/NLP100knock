@@ -9,6 +9,7 @@ use LIB;
 use utf8;
 binmode STDOUT, ':encoding(utf-8)';
 
+# 入力(Wikipedia記事)からtitleがイギリスの記事を出力
 print &LIB::getTextFromWiki("../../data/jawiki-country.json", "イギリス");
 
 # **************

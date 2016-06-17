@@ -8,15 +8,21 @@ use LIB;
 use utf8;
 binmode STDOUT, ':encoding(UTF-8)';
 
+# 入力 (1行毎にリスト化)
 my @text = split/\n/, &LIB::fopen("../../data/hightemp.txt");
+
+# 1列目のリストを作成
 my @col1 = ();
 foreach my $line (@text) {
 	my @col = split/\t/, $line;
 	push(@col1, shift @col);
 }
 
+# ハッシュを用いてユニークなキー(文字列の種類)のみのリストを作成
 my %cnt = ();
 my @col1_uniq = grep {++$cnt{$_} == 1} @col1;
+
+# 出力
 print join("\n", @col1_uniq);
 
 # **************

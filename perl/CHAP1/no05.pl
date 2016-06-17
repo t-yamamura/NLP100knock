@@ -11,6 +11,7 @@ binmode STDOUT, ':encoding(UTF-8)';
 
 my $str = "I am an NLPer";
 my @word = split(" ", $str);
+
 my $N = 2;
 my @ngram_word = &LIB::getWordNgram($N, \@word);
 my @ngram_char = &LIB::getCharNgram($N, \@word);

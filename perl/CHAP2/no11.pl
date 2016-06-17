@@ -9,7 +9,7 @@ use utf8;
 binmode STDOUT, ':encoding(UTF-8)';
 
 my $text = &LIB::fopen("../../data/hightemp.txt");
-$text =~ s/\t/ /g;
+$text =~ s/\t/ /g; # タブ(\t)をスペース1文字( )に置換
 print $text . "\n";
 
 # **************
