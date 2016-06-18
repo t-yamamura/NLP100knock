@@ -110,4 +110,53 @@ sub getTextFromWiki {
 
 }
 
+# ******************************************************************
+# MeCabの解析結果をリストで受け取る
+#
+# \@param 形態素解析結果
+# @return Mecab解析結果のリスト
+# *******************************************************************
+sub makeMecabResultNodes {
+
+	# 引数受け取り
+	my ($ref_each_sentence) = @_;
+
+	# ノード情報のリスト
+	my @all_nodes = ();
+
+	# 1文単位で処理
+	foreach my $sentence (@{$ref_each_sentence}) {
+		next if $sentence eq ''; # 改行(EOS)が続く場合はスキップ
+		my @nodes = ();
+		my @each_node = split/\n/, $sentence;
+
+		# 各ノード(単語)毎に形態素解析結果をハッシュ化
+		foreach my $node (@each_node) {
+			my ($surface, $feature) = split /\t/, $node;
+			my ($pos, $pos1, $pos2, $pos3, $katsuyo1, $katsuyo2, $base, $yomi, $hatsuon) = split /,/, $feature;
+
+			my %node_info = (	surface  => $surface,	# 表層形
+								pos      => $pos,		# 品詞
+								pos1     => $pos1,		# 品詞細分類1
+								pos2     => $pos2,		# 品詞細分類2
+								pos3     => $pos3,		# 品詞細分類3
+								katsuyo1 => $katsuyo1,	# 活用型
+								katsuyo2 => $katsuyo2,	# 活用形
+								base     => $base,		# 原形
+								yomi     => $yomi,		# 読み
+								hatsuon  => $hatsuon);	# 発音
+
+			# ノード情報をリストに追加
+			push(@nodes, \%node_info);
+		}
+
+		# 1文毎に各ノードをリストに追加
+		push(@all_nodes, \@nodes);
+	}
+
+	return @all_nodes;
+
+}
+
+
 1; # omazinai
