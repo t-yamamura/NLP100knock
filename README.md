@@ -3,9 +3,9 @@
 http://www.cl.ecei.tohoku.ac.jp/nlp100/
 
 ## 環境
-* Windows 7
+* Windows 7(64bit)
 * Sublime Text 2
-* Perl v5.20.2
+* Perl v5.20.2(ActivePerl5.20.2)
 
 ## エンコーディング
 * file   : UTF-8

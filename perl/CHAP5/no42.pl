@@ -18,6 +18,7 @@ my @all_nodes = &LIB::makeChunkResultNodes(\@each_sentence);
 my $OUT = '';
 foreach my $chunks (@all_nodes) {
 	for(my $i = 0; $i < $#{$chunks} + 1; $i++) {
+		# 係り先の文節番号:係り先のテキスト	@(係り元の文節番号:係り元のテキスト)
 		$OUT .= $chunks->[$i]->{num} . ":" . $chunks->[$i]->{text} . "\t";
 		$OUT .= $chunks->[$_]->{num} . ":" . $chunks->[$_]->{text} . "\t" for @{$chunks->[$i]->{srcs}};
 		$OUT =~ s/\t$/\n/g;
@@ -25,9 +26,9 @@ foreach my $chunks (@all_nodes) {
 	$OUT .= "\n";
 }
 &LIB::fwrite("out42.txt", $OUT);
-# print $OUT;
-
 
 # **************
 #    実行結果
 # **************
+# 実行結果はout42.txtを参照
+# [Finished in 770.1s]

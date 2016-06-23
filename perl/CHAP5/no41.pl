@@ -18,7 +18,7 @@ my @each_sentence = split /EOS\n/, &LIB::fopen("../../data/neko.txt.cabocha");
 my @all_nodes = &LIB::makeChunkResultNodes(\@each_sentence);
 
 # 出力(8文目の文節の文字列と係り先を表示)
-my @chunks = @{$all_nodes[7]};
+my @chunks = @{$all_nodes[5]};
 for(my $i = 0; $i < $#chunks + 1; $i++) {
 	# 文節番号:文節の文字列	係り先の文節番号:係り先の文字列
 	printf "%s:%s\t%s:%s\n", ($chunks[$i]->{num}, $chunks[$i]->{text}, $chunks[$i]->{dst}, $chunks[$chunks[$i]->{dst}]->{text});
@@ -27,11 +27,10 @@ for(my $i = 0; $i < $#chunks + 1; $i++) {
 # **************
 #    実行結果
 # **************
-# 1:書生というのは	7:話である
-# 2:時々	4:捕えて
-# 3:我々を	4:捕えて
-# 4:捕えて	5:煮て
-# 5:煮て	6:食うという
-# 6:食うという	7:話である
-# 7:話である	-1:話である
-# [Finished in 6.7s]
+# 0:吾輩は	5:見た
+# 1:ここで	2:始めて
+# 2:始めて	3:人間という
+# 3:人間という	4:ものを
+# 4:ものを	5:見た
+# 5:見た	-1:見た
+# [Finished in 5.7s]
