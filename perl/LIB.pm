@@ -7,6 +7,8 @@ use strict;
 use warnings;
 use utf8;
 use JSON;
+require Morph;
+require Chunk;
 
 # *******************************************************************
 # 単語Nグラムを返す (No.05, 06)
@@ -157,6 +159,84 @@ sub makeMecabResultNodes {
 	return @all_nodes;
 
 }
+
+# ******************************************************************
+# Cabochaの解析結果をリストで受け取る
+#
+# \@param 係り受け解析結果
+# @return 係り受け解析結果のリスト
+# *******************************************************************
+sub makeChunkResultNodes {
+
+	# 引数受け取り
+	my ($ref_each_sentence) = @_;
+
+	# ノード情報のリスト
+	my @all_nodes = ();
+
+
+	foreach my $sentence (@{$ref_each_sentence}) {
+		next if $sentence eq '';
+		my @nodes = ();
+		my @dependency = ();
+		my $chunk = Chunk->new();
+		my @lines = split /\n/, $sentence;
+		my $head = -1;
+		my $position = 0;
+
+		# 各文節毎にMophs, dst, srcsの解析結果を保持
+		for(my $i = 0; $i < $#lines + 1; $i++) {
+
+			# 文節情報
+			if($lines[$i] =~ /\* /) {
+				my ($aster, $phrase_num, $dst, $head_func, $score) = split /\ /, $lines[$i];
+				$dst =~ s/D//g;
+				$head = (split //, $head_func)[0];
+				$chunk = Chunk->new();
+				$chunk->setChunk($phrase_num, '', '', $dst, '', '', '');
+				$dependency[$phrase_num] = $dst;
+				push(@nodes, $chunk);
+
+				# 文節番号を初期化
+				$position = 0;
+			}
+			# 文節内の形態素
+			elsif($lines[$i] =~ /\t/) {
+				my ($surface, $feature) = split /\t/, $lines[$i];
+				my ($pos, $pos1, $base) = (split /,/, $feature)[0,1,6];
+				my $morph = Morph->new();
+				$morph->setMorph($surface, $base, $pos, $pos1);
+				push(@{$chunk->{morphs}}, $morph);
+
+				# 記号以外の表層を結合
+				$chunk->{text} .= $surface if $pos ne '記号';
+
+				# 文節中の主辞の情報を保持
+				if($position == $head) {
+					$base = $surface if $base eq '*';
+					$chunk->{head_wrd} = $base;
+					$chunk->{head_pos} = $pos;
+				}
+
+				# 文節番号をカウント
+				$position++;
+			}
+
+			# 最後の文節のとき
+			if($i == $#lines) {
+				# 係り元のリストの作成
+				for(my $j = 0; $j < $#nodes + 1; $j++) {
+					push(@{$nodes[$j]->{srcs}},  grep {$j == $dependency[$_]} (0..$#dependency));
+				}
+				# 1文内の全ての文節をリストに追加
+				push(@all_nodes, \@nodes);
+			}
+		}
+	}
+
+	return @all_nodes;
+}
+
 
 
 1; # omazinai
