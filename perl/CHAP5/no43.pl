@@ -18,15 +18,11 @@ my @all_nodes = &LIB::makeChunkResultNodes(\@each_sentence);
 my $OUT = '';
 foreach my $chunks (@all_nodes) {
 	for(my $i = 0; $i < $#{$chunks} + 1; $i++) {
-		# 名詞が含む文節(係り元)の判定
-		if(grep {$_->{pos} eq '名詞'} @{$chunks->[$i]->{morphs}}) {
-			# 動詞を含む文節(係り先)の判定
-			foreach my $srcs (@{$chunks->[$i]->{srcs}}) {
-				if(grep {$_->{pos} eq '動詞'} @{$chunks->[$srcs]->{morphs}}) {
-					# 文節番号:係り元のテキスト(名詞を含む)	文節番号:係り先のテキスト(動詞を含む)
-					$OUT .= $chunks->[$i]->{num} . ":" . $chunks->[$i]->{text} . "\t" . $chunks->[$srcs]->{num} . ":" . $chunks->[$srcs]->{text} . "\n";
-				}
-			}
+		# 係り元の文節が名詞を含み，かつ係り先の文節が動詞を含む
+		if($chunks->[$i]->existsMorph('pos', '名詞') && $chunks->[$chunks->[$i]->{dst}]->existsMorph('pos', '動詞')) {
+			# 文節番号:係り元のテキスト(名詞を含む)	文節番号:係り先のテキスト(動詞を含む)
+			$OUT .= $chunks->[$i]->{num} . ":" . $chunks->[$i]->{text} . "\t";
+			$OUT .= $chunks->[$chunks->[$i]->{dst}]->{num} . ":" . $chunks->[$chunks->[$i]->{dst}]->{text} . "\n";
 		}
 	}
 	$OUT .= "\n";
@@ -40,4 +36,4 @@ $OUT =~ s/\n{3,}/\n\n/g;
 #    実行結果
 # **************
 # 実行結果はout43.txtを参照
-# [Finished in 13.4s]
+# [Finished in 8.0s]

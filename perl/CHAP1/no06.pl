@@ -15,18 +15,10 @@ my @str2 = split //, "paragraph";
 my @x = &LIB::getCharNgram(2, \@str1);
 my @y = &LIB::getCharNgram(2, \@str2);
 
-# 和集合
-my %cnt = ();
-my @wa_set = grep { ++$cnt{$_} == 1} (@x, @y);
-
-# 積集合
-%cnt = ();
-my @seki_set = grep { ++$cnt{$_} == 2} (@x, @y);
-
-# 差集合
-%cnt = ();
-map { $cnt{$_}-- } @y;
-my @sa_set = grep { ++$cnt{$_} == 1} @x;
+# XとYの和集合・積集合・差集合
+my @wa_set = &LIB::getUnion(\@x, \@y);        # 和集合
+my @seki_set = &LIB::getProductSet(\@x, \@y);  # 積集合
+my @sa_set = &LIB::getDifferenceSet(\@x, \@y); # 差集合
 
 # 出力
 print "和集合 : " . join(" ", sort @wa_set) . "\n";

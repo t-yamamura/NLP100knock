@@ -39,3 +39,10 @@ my $filename = 'out44';
 $graph->save(path => $filename, encoding => 'utf-8');
 # out44.pngを生成
 system("dot -Tpng $filename.dot -o $filename.png");
+
+
+# **************
+#    実行結果
+# **************
+# 実行結果はout44.pngを参照
+# [Finished in 7.0s]
